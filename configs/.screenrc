@@ -1,0 +1,108 @@
+# Edited: 2020/12/18
+# https://www.kilobitspersecond.com/2014/02/10/understanding-gnu-screens-hardstatus-strings/
+# https://github.com/yous/dotfiles/blob/master/screenrc
+
+# GNU Screen Cheat Sheet
+# Find word: Ctrl+a, Esc, ?text_here, Enter, After that you can use "n" to go to next
+# Reload screenrc Prefix : source ~/.screenrc
+# Help: Ctrl+a ?
+# Search Page Down or Page Up to enter copy mode then ?text_here, press "n" to find next match
+# https://gist.github.com/jctosta/af918e1618682638aa82
+# https://gist.github.com/fredrick/1216878
+# Save strout logs: ctrl+a :hardcopy -h filename_here
+# Start screen session: screen -d -r harakri || screen -S harakri
+# Kill/delete screen session: screen -X -S 1115.sharakri quit
+# Kill/delete screen session: screen -X -S `echo $(screen -ls | grep -Eo ".+.sharakri")` quit
+# Create new window Ctrl+a c
+# Kill current window Ctrl+a k
+# Split display horizontally	Ctrl+a S
+# Split display vertically	Ctrl+a |
+# Close split windows Ctlr+a q
+# Jump to next display region	Ctrl+a TAB
+# Remove current region	Ctrl+a X
+# Search in stdout: Ctrl+a, [   then type:     ?string_here     and press "ENTER"
+# Search up: after you typed the string and pressed ENTER press letter "n" to search up
+# Search exit: Press "ESC" to quit search and copy mode
+
+# h, j, k, l move the cursor line by line or column by column.
+# 0, ^ and $ move to the leftmost column, to the first or last non-whitespace character on the line.
+# H, M and L move the cursor to the leftmost column of the top, center or bottom line of the window.
+# + and - positions one line up and down.
+# G moves to the specified absolute line (default: end of buffer).
+# | moves to the specified absolute column.
+# w, b, e move the cursor word by word.
+# B, E move the cursor WORD by WORD (as in vi).
+# C-u and C-d scroll the display up/down by the specified amount of lines while preserving the cursor position. (Default: half screen-full).
+# C-b and C-f scroll the display up/down a full screen.
+# g moves to the beginning of the buffer.
+# % jumps to the specified percentage of the buffer.
+
+
+startup_message off
+
+# turn off wuff wuff message
+vbell on
+vbell_msg ''
+termcapinfo *  vb=:
+
+# Reload this configuration file after changes:
+bind R colon "source $HOME/.screenrc"
+
+shelltitle shell
+defscrollback 5024
+
+# Window numbering starts at 1, not 0.
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+screen 1
+escape ^aa
+
+# Look and feel
+# caption always "%{= 2m}%{+b KW} %H | Current %n %` | %h %=%t %D %d/%m/%y %c:%s"
+# caption string "%{= kw}%Y-%m-%d %c %{= kw}%-Lw%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+Lw%1`"
+# hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<  %=%"
+caption string "%{= kw} %-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+caption always
+
+
+# Our warning of activity
+activity "Activity in %t(%n)"
+
+# Left Right meta key mods
+#ALT-,. and ALT-<>
+bindkey "^[<" eval number !echo $WINDOW-1|bc
+bindkey "^[>" eval number !echo $WINDOW+1|bc
+bindkey "^[," prev
+bindkey "^[." next
+
+select 1
+
+autodetach      on
+
+# Enable mouse scrolling and scroll bar history scrolling
+#termcapinfo xterm* ti@:te@
+termcapinfo xterm-color ti@:te@
+
+# pgup pgdown enter copy mode move page
+bindkey "^[[5~" eval "copy" "stuff ^b"
+bindkey "^[[6~" eval "copy" "stuff ^f"
+
+# Having this command in your .screenrc would bind the key sequence
+# C-a R’ to the `su’ command and give it an auto-title name of `root:’.
+bind R screen -t '% |root:' sudo bash
+
+bind "K" kill
+
+msgwait 15
+
+# termcap stuff scrolling
+termcapinfo xterm     ti@:te@
+# make the cursor show up in red:
+termcapinfo linux "ve=\E[?25h\E[?17;0;64c"
+
+bind = resize =
+bind + resize +1
+bind – resize -1
+
+bindkey "^[k" eval "copy" "stuff ^b"

@@ -1,0 +1,62 @@
+[core]
+	eol = lf
+	autocrlf = input
+	editor = 'vim'
+	filemode = false
+[user]
+	name = Haragos, Krisztián Mátyás
+	email = KrisztianMatyas.Haragos@msci.com
+[push]
+	default = matching
+[pull]
+  rebase = merges
+  
+[alias]
+	track-submodule-branch = "! git submodule foreach -q --recursive 'branch=\"$(git config -f $toplevel/.gitmodules submodule.$name.branch)\"; git checkout $branch >/dev/null 2>/dev/null'"
+	update = ! git checkout dev && git pull && git checkout dev_harakri && git pull && git merge dev && cd $(git rev-parse --show-toplevel) && git submodule update && git track-submodule-branch
+	s=status
+	co=checkout
+	cob=checkout -b
+	a=add
+	c=commit -m
+	cdebug=!git commit -m "debug $(git log --oneline master..HEAD | egrep "debug [0-9]*$" | wc -l)" && git ps
+	res=restore
+	resb=reset --hard
+	l=log --oneline --max-count 5
+	ll=log --oneline --max-count 20
+	ps=push
+	pl=pull
+	d=diff
+	mm=!git fetch origin master && git merge origin/master
+	pss=!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+	master=checkout master
+	fp=fetch --prune
+	b=branch -vv
+	db=branch --delete
+	pr=!az repos pr create --target-branch master -o table --open
+	pro=!bash -i -c 'open_pr $0 $@'
+	prd=!az repos pr create --target-branch develop -o table
+	prls=!az repos pr list -o table
+	prcheck=!az repos pr show -o table  --id
+	prmerge=!az repos pr update --status completed -o table --delete-source-branch --id
+	f=fetch --prune
+	cl=!git b -vv | grep ": gone]" | cut -d" " -f3 | xargs git db; git b
+	cll=!git b -vv | grep ": gone]" | cut -d" " -f3 | xargs git db -D
+[http]
+	sslVerify = true
+[status]
+    ignoreSubmodules = dirty
+[diff]
+    ignoreSubmodules = dirty
+
+[color]
+status = auto
+
+[color "status"]
+	added = green
+	changed = blue
+	untracked = magenta
+	deleted = red
+	
+[credential]
+	helper = store

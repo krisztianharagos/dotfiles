@@ -23,3 +23,18 @@ function dvp
 {
     d volume prune -f
 }
+
+alias dco='docker-compose'
+alias dcbu='docker-compose build && docker-compose up'
+alias doclean='docker rm $(docker ps -a -f status=exited -q)'
+alias dosudo='sudo usermod -aG docker $USER'
+alias doprune='docker system prune'
+alias doi='docker images'
+alias dois='docker images --format "{{.ID}}\t{{.Size}}\t{{.Repository}}:{{.Tag}}" | sort -k 2 -h'
+alias dops='docker ps'
+alias dodf='docker system df'
+alias dotest='docker search ubuntu'
+alias dohi=dohi;dohi () {
+  docker history --no-trunc "$1" | tac | tr -s ' ' | cut -d " " -f 5- | sed 's,^/bin/sh -c #(nop) ,,g' | sed 's,^/bin/sh -c,RUN,g' | sed 's, && ,\n  & ,g' | sed 's,\s*[0-9]*[\.]*[0-9]*[kMG]*B\s*$,,g' | head -n -1
+  }
+alias dohis='docker run -v /var/run/docker.sock:/var/run/docker.sock --rm $*'
