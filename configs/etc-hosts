@@ -1,0 +1,9 @@
+127.0.0.1 localhost
+127.0.1.1 DESKTOPxyz.localdomain
+127.0.0.1 localhost.fiddler
+127.0.0.1 kubernetes.docker.internal
+
+192.168.0.227   localhost
+127.0.0.2       localhost.wsl
+127.0.1.1       DESKTOP-2DBTH0H.localdomain     DESKTOP-2DBTH0H
+
