@@ -13,3 +13,26 @@ alias alg="alias | grep -i "
 alias la="ls -Ah  --show-control-chars -F --color "
 alias lt="echo 'Showing first 10 results:' && ls -lacth  --show-control-chars -F --color | head -n 11"
 alias lsn="stat -c '%a %A %U %G %s %n' *"
+
+
+alias ll="ls -lhArt"
+alias df="df -Tha --total"
+alias du="du -ach | sort -h"
+alias free="free -mt"
+alias ps="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias mkdir="mkdir -p"
+alias wget="wget -c"
+alias histg="history | grep"
+alias top="htop"
+alias myip="curl -s http://ipecho.net/plain; echo"
+
+
+
+alias cu='cd /c/workspace/ui/graph'
+alias cdo='cd /c/workspace/devops'
+alias cdb='cd /c/workspace/devops/beon-devops-dashboard'
+alias cdu='cd /c/workspace/ui/graph'
+alias cdp='cd /Users/harakri/projects'
+alias cw='cd /c/work'
+

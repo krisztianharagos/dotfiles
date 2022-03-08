@@ -38,3 +38,18 @@ alias dohi=dohi;dohi () {
   docker history --no-trunc "$1" | tac | tr -s ' ' | cut -d " " -f 5- | sed 's,^/bin/sh -c #(nop) ,,g' | sed 's,^/bin/sh -c,RUN,g' | sed 's, && ,\n  & ,g' | sed 's,\s*[0-9]*[\.]*[0-9]*[kMG]*B\s*$,,g' | head -n -1
   }
 alias dohis='docker run -v /var/run/docker.sock:/var/run/docker.sock --rm $*'
+
+
+
+function dog () {
+  x=${1:-""}
+	export di=$(docker images --format "table {{.Repository}}:{{.Tag}}" | grep $x)
+	echo $di
+}
+
+function dor () {
+  x=${1:-$di}
+  docker run -it --rm --entrypoint sh $x
+  # docker run -it --rm -v "${PWD}":/app --entrypoint sh $x
+  # docker run -it --rm -v /c/tmp/docker:/app --entrypoint sh $x
+}

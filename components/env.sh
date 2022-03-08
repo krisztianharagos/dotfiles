@@ -1,4 +1,8 @@
-################################# ..ENVS #################################
+################################ ..ENVS #################################
+
+export MSYS_NO_PATHCONV=1
+
+
 export BROWSER=$HOME/.local/bin/chrome
 export SKAFFOLD_UPDATE_CHECK=false
 export PGPASSFILE="$HOME/.pgpass"

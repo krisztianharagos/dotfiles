@@ -131,3 +131,13 @@ git status --porcelain | sed 's/^...//;s/^"//;s/"$//' | while read path; do
     du -bs "$path" ;
 done | sort -n | awk ' {tot = tot+$1; print } END { printf("%.2fMB\n",tot/(1024*1024)) }'
 }
+
+
+
+
+alias g='git'
+alias gres='git reset --hard;git clean -df;git pull'
+alias ggc='git gc --prune=now --aggressive'
+alias gb='git branches -r'
+# https://stackoverflow.com/questions/25356810/git-how-to-squash-all-commits-on-branch
+alias gisquash='git reset --soft HEAD~$(git rev-list --count HEAD ^master)'

@@ -42,3 +42,45 @@ alias azaksget=azaksget; azaksget() {
     export KUBECONFIG=$HOME/.kube/config
   fi
 }
+
+
+################################### ..PR ###################################
+
+function pro() {
+  local prId="$1";
+  if [[ ! $prId =~ ^[0-9]+$ ]]; then
+  prId="$(az repos pr list --creator KrisztianMatyas.Haragos@msci.com --output tsv --query "[].pullRequestId")";
+  fi;
+  az repos pr show --id $prId --open --output none
+}
+
+function myprs () {
+  az repos pr list --project analytics-solution-management --status active --query "[?createdBy.uniqueName=='$(az account show --query "user.name" -o tsv)'].{repo:repository.name, title:title, id: pullRequestId}" | jq -r '.[] | .repo + "\t" + .title + "\thttps://dev.azure.com/msci-otw/analytics-solution-management/_git/" + .repo + "/pullrequest/" + (.id | tostring)'
+}
+
+function pl() {
+  "C:\Program Files\Google\Chrome\Application\chrome.exe"  "https://dev.azure.com/msci-otw/analytics-solution-management/_build?definitionScope=%5C$(basename `git rev-parse --show-toplevel`)"
+}
+
+agent-ssh ()
+{
+  local ip=`az vmss nic list -g rgrp-dva2-so-ado-agents --vmss-name ssdva2soadoal01 | jq -r ".[].ipConfigurations[].privateIpAddress" | head -n 1`;
+  ssh $ip
+}
+
+function azagent() {
+  AZ_RG_AGENTS='--resource-group RGRP-DVA2-SP-ADO-AGENTS'
+  AZ_VMSS_AGENTS='--name ssdva2spadoagent'
+  ssh $(az vmss nic list $AZ_RG_AGENTS  ${AZ_VMSS_AGENTS/--/--vmss-}-$1 | jq '.[0].ipConfigurations[].privateIpAddress' | tr -d \")
+}
+
+function azpersonal() {
+  AZ_RG='--resource-group rgrp-dva2-sp-personal-harakri'
+  AZ_VM='--name dva2spharakri01'
+  ssh $(az vmss nic list $AZ_RG  ${AZ_VM/--/--vmss-}-$1 | jq '.[0].ipConfigurations[].privateIpAddress' | tr -d \")
+}
+
+function agent-ssh() {
+  local ip=`az vmss nic list -g rgrp-dva2-so-ado-agents --vmss-name ssdva2soadoal03 | jq -r ".[].ipConfigurations[].privateIpAddress" | head -n 1`;
+  ssh $ip -l azureadmin
+}

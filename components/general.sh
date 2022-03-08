@@ -74,3 +74,12 @@ function remove_prefix_in_current_dir()
 #     eval BOLD_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
 # done
 # eval RESET='%{$reset_color%}'
+
+function reload () {
+  . ~/.bashrc
+}
+
+function vibash () {
+  code ~/.bashrc;. ~/.bashrc
+}
+
