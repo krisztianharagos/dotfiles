@@ -25,5 +25,7 @@ cap () { tee /tmp/capture.out; }
 # return the output of the most recent command that was captured by cap
 ret () { cat /tmp/capture.out; }
 
+viret () {vscode /tmp/capture.out; }
+
 alias capcb='pbcopy.exe'
 alias retcb='pbpaste.exe'
