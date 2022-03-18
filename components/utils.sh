@@ -18,3 +18,5 @@ function sshkeygen () {
   cp ~/.ssh/id_rsa* .
 }
 
+alias cap='pbcopy.exe'
+alias ret='pbpaste.exe'
