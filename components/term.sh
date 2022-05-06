@@ -1,6 +1,6 @@
 ################################## ..SCREEN ##################################
 # Changes screen windows title names to which folder you are in 
-# Like:  1$* ~  2$ bin  3-$ certs  4$ tmp  5$ .kube  
+# Like:  1$* ~  2$ bin  3-$ certs  4$ tmp  5$ .kube
 if [[ "$TERM" == screen* ]]; then
   screen_set_window_title () {
     local HPWD="$PWD"
@@ -88,7 +88,7 @@ alias dow='cd ~/Downloads'
 # Copy current path to clipboard
 alias pwdc="pwd | tr -d '\n' | xclip -sel clip"
 # Sort and list all files and folders by size
-alias dua='du -sch .[!.]* * |sort -h' 
+alias dua='du -sch .[!.]* * |sort -h'
 # Enable cd.. and cd~ usage without space
 alias cd..='cd ..'
 alias cd~='cd ~'
@@ -215,7 +215,8 @@ function is_proxy_enabled() {
 #    time  proxy   user    hostname    token current cluster  current namespace git branch  current folder
 # 15:35:22 ! user_name dn8-it-lchtst07 {jjt:cluster-dn8-sp-kcapp101:default} (git-branch) /tmp ▼
 if [[ -n "$BASH" ]] ;then
-  export PS1="${NORMAL}\$(declare -F __get_time_ps1 >/dev/null && __get_time_ps1)${RED}\$(is_proxy_enabled) \u ${GREEN}\h${YELLOW} {\$(get_az_subscripion_id):\$(declare -F __k8s_details_ps1 >/dev/null && __k8s_details_ps1)}${BLUE} \$(declare -F git_details_ps1 >/dev/null && git_details_ps1)\$(markup_git_branch)${CYAN} \w${NORMAL} >\n\$ "
+  # export PS1="${NORMAL}\$(declare -F __get_time_ps1 >/dev/null && __get_time_ps1)${RED}\$(is_proxy_enabled) \u ${GREEN}\h${YELLOW} {\$(get_az_subscripion_id):\$(declare -F __k8s_details_ps1 >/dev/null && __k8s_details_ps1)}${BLUE} \$(declare -F git_details_ps1 >/dev/null && git_details_ps1)\$(markup_git_branch)${CYAN} \w${NORMAL} >\n\$ "
+  export PS1="${NORMAL}\$(declare -F __get_time_ps1 >/dev/null && __get_time_ps1)${RED}\$(is_proxy_enabled) \u ${GREEN}\h${BLUE} \$(declare -F git_details_ps1 >/dev/null && git_details_ps1)\$(markup_git_branch)${CYAN} \w${NORMAL} >\n\$ "
   # export PS1="${NORMAL}\$(declare -F __get_time_ps1 >/dev/null && __get_time_ps1)${RED}\$(is_proxy_enabled) \u ${GREEN}\h${YELLOW} {\$(get_k8s_token):\$(declare -F __k8s_details_ps1 >/dev/null && __k8s_details_ps1)}${BLUE} \$(declare -F git_details_ps1 >/dev/null && git_details_ps1) ${CYAN} \w${NORMAL} >\n\$ "
   # export PS1="${NORMAL}${RED} \u ${GREEN}\h${YELLOW} {:}${BLUE})${CYAN} \w${NORMAL} ▼\n\$ "
 

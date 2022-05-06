@@ -14,7 +14,7 @@ function jwt () {
 
 function sshkeygen () {
   cp -rf ~/.ssh ~/.ssh.$(date --utc +%Y%m%d_%H%M%SZ).bak
-  ssh-keygen -t rsa -b 4096 -N "hariVeryStrongSecret123!ekr" -C "KrisztianMatyas.Haragos@msci.com" -q -f  ~/.ssh/id_rsa
+  ssh-keygen -t rsa -b 4096 -N "hariVeryStrongSecret123!ekr" -C "kharagos@cmtelematics.com" -q -f  ~/.ssh/id_rsa
   cp ~/.ssh/id_rsa* .
 }
 
