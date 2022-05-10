@@ -14,7 +14,7 @@ if [[ $HOSTNAME == "BDUWLP879" ]]; then
 fi
 
 # If KUBECONFIG is not configured, set it to default value:
-if ! [[ -f "$KUBECONFIG" ]]; then
-  echo "Setting KUBECONFIG to ~/.kube/config"
-    export KUBECONFIG=~/.kube/config
-fi
+# if ! [[ -f "$KUBECONFIG" ]]; then
+#   echo "Setting KUBECONFIG to ~/.kube/config"
+#     export KUBECONFIG=~/.kube/config
+# fi
