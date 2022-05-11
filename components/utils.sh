@@ -18,6 +18,11 @@ function sshkeygen () {
   cp ~/.ssh/id_rsa* .
 }
 
+# example 'rundirs "poetry install"'
+function rundirs () {
+  find . -maxdepth 1 -type d \( ! -name . \) -exec /bin/bash -c "cd '{}' && ${@}" \;
+}
+
 # https://stackoverflow.com/questions/24283097/reusing-output-from-last-command-in-bash
 # capture the output of a command so it can be retrieved with ret
 cap () { tee /tmp/capture.out; }

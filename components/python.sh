@@ -10,7 +10,21 @@ function pyton_new_virtual_env() {
   python -m venv .venv
   source .venv/bin/activate
 }
-alias pyvenv='python_new_virtual_env'
+
+function python_poetry_install_projects() {
+  for d in `find . -type f -name 'pyproject.toml' | sed -r 's|/[^/]+$||' |sort |uniq`:
+  do
+    pushd $d
+
+    poetry env use 3.8.13
+    #poetry env info
+    poetry install
+
+    popd
+  done
+}
+
+alias pyvenv='pyton_new_virtual_env'
 
 alias pyactivate='source .venv/bin/activate'
 
