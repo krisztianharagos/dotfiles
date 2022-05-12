@@ -5,6 +5,8 @@ eval "$(pyenv virtualenv-init -)"
 
 export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH"
 
+export PIP_REQUIRE_VIRTUALENV=false
+
 # Create remote git branch (and local too) from master
 function pyton_new_virtual_env() {
   python -m venv .venv
