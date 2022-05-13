@@ -13,14 +13,27 @@ function pyton_new_virtual_env() {
   source .venv/bin/activate
 }
 
+function python_poetry_install() {
+  poetry env use 3.8.13
+  #poetry env info
+  poetry install
+}
+
+function python_poetry_activate() {
+  source $(poetry env info --path)/bin/activate
+}
+
+function python_poetry_install_and_activate() {
+  python_poetry_install
+  python_poetry_activate
+}
+
 function python_poetry_install_projects() {
   for d in `find . -type f -name 'pyproject.toml' | sed -r 's|/[^/]+$||' |sort |uniq`:
   do
     pushd $d
 
-    poetry env use 3.8.13
-    #poetry env info
-    poetry install
+    python_poetry_install
 
     popd
   done
@@ -32,7 +45,7 @@ alias pyactivate='source .venv/bin/activate'
 
 alias pydeactivate='deactivate'
 
-alias pypoinstall='poetry install'
+alias pypoinstall='python_poetry_install_and_activate'
 
 alias pyinstall='pip install -r $0'
 
