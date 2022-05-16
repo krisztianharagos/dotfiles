@@ -34,3 +34,5 @@ viret () { code /tmp/capture.out; }
 
 alias cap2='pbcopy.exe'
 alias ret2='pbpaste.exe'
+
+reload () { source ~/.bashrc; }

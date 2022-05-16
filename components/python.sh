@@ -47,7 +47,7 @@ alias pydeactivate='deactivate'
 
 alias pypoinstall='python_poetry_install_and_activate'
 
-alias pyinstall='pip install -r $0'
+alias pyinstall="pip install -r $1"
 
 # sets global config so that the virtualenvs are created without running
 # python -m venv .venv && source .venv/bin/activate
