@@ -39,6 +39,24 @@ function python_poetry_install_projects() {
   done
 }
 
+function python_requirements_install_projects() {
+  for d in `find . -type f -name 'requirements.txt' | sed -r 's|/[^/]+$||' |sort |uniq`:
+  do
+    pushd $d
+
+    pip install -r requirements.txt --prefer-binary -q
+
+    popd
+  done
+}
+
+function python_init_requirements_base() {
+  pyvenv
+  python_requirements_install_projects
+}
+
+alias pyreqinit='python_init_requirements_base'
+
 alias pyvenv='pyton_new_virtual_env'
 
 alias pyactivate='source .venv/bin/activate'
