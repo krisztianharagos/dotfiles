@@ -53,3 +53,7 @@ function dor () {
   # docker run -it --rm -v "${PWD}":/app --entrypoint sh $x
   # docker run -it --rm -v /c/tmp/docker:/app --entrypoint sh $x
 }
+
+function do-http-echo () {
+  docker run -p 8080:8080 -p 8443:8443 --rm -t mendhak/http-https-echo:24
+}
