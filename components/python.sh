@@ -20,6 +20,10 @@ function python_poetry_install() {
 }
 
 function python_poetry_activate() {
+  source`poetry env info --path`/bin/activate
+}
+
+function python_poetry_activate() {
   source $(poetry env info --path)/bin/activate
 }
 
@@ -55,6 +59,12 @@ function python_init_requirements_base() {
   python_requirements_install_projects
 }
 
+function flask_run() {
+  python -m flask run
+}
+
+alias flask='flask_run'
+
 alias pyreqinit='python_init_requirements_base'
 
 alias pyvenv='pyton_new_virtual_env'
@@ -64,6 +74,7 @@ alias pyactivate='source .venv/bin/activate'
 alias pydeactivate='deactivate'
 
 alias pypoinstall='python_poetry_install_and_activate'
+alias pypoactivate='python_poetry_activate'
 
 alias pyinstall="pip install -r $1"
 

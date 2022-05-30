@@ -11,7 +11,7 @@ alias lg="ls -laFh  --show-control-chars -F --color | grep -i "
 # List all aliases and filter them with grep. Usage: aliasg kube
 alias alg="alias | grep -i "
 alias la="ls -Ah  --show-control-chars -F --color "
-alias lt="echo 'Showing first 10 results:' && ls -lacth  --show-control-chars -F --color | head -n 11"
+# alias lt="echo 'Showing first 10 results:' && ls -lacth  --show-control-chars -F --color | head -n 11"
 alias lsn="stat -c '%a %A %U %G %s %n' *"
 
 
