@@ -9,7 +9,7 @@ function seecert () {
 }
 
 function jwt () {
-  cut -d"." -f1,2 <<< $1 | sed 's/\./\n/g' | base64 --decode | jq
+  cut -d"." -f1,2 <<< $1 | sed 's/\./\n/g' | base64 --decode
 }
 
 function sshkeygen () {
@@ -26,6 +26,10 @@ function rundirs () {
 function localtunnel () {
   # lt --local-host 84.236.98.195 --port 5000 --subdomain kharagos
   lt --port 5000 --subdomain kharagos
+}
+
+function todate () {
+  date -r $1
 }
 
 alias localtunnerl='localtunnel'
