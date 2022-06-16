@@ -35,7 +35,7 @@ function python_poetry_install_and_activate() {
 function python_poetry_install_projects() {
   for d in `find . -type f -name 'pyproject.toml' | sed -r 's|/[^/]+$||' |sort |uniq`:
   do
-    pushd $d
+    pushd $(realpath $d)
 
     python_poetry_install
 
@@ -46,7 +46,7 @@ function python_poetry_install_projects() {
 function python_requirements_install_projects() {
   for d in `find . -type f -name 'requirements.txt' | sed -r 's|/[^/]+$||' |sort |uniq`:
   do
-    pushd $d
+    pushd $(realpath $d)
 
     pip install -r requirements.txt --prefer-binary -q
 
