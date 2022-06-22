@@ -32,6 +32,10 @@ function todate () {
   date -r $1
 }
 
+function isodate () {
+  date -u +"%Y-%m-%dT%H:%M:%SZ"
+}
+
 alias localtunnerl='localtunnel'
 
 # https://stackoverflow.com/questions/24283097/reusing-output-from-last-command-in-bash

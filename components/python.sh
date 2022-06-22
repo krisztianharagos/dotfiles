@@ -6,6 +6,8 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH"
 
 export PIP_REQUIRE_VIRTUALENV=false
+export PIPENV_VENV_IN_PROJECT=1
+export PIPENV_CACHE_DIR="/Users/krisztian.haragos/cmt/pipenv_cache"
 
 # Create remote git branch (and local too) from master
 function pyton_new_virtual_env() {
@@ -17,6 +19,10 @@ function python_poetry_install() {
   poetry env use 3.8.13
   #poetry env info
   poetry install
+}
+
+function python_pipenv_install() {
+  PIPENV_VERBOSITY=-1 PIPENV_VENV_IN_PROJECT=1 pipenv install
 }
 
 function python_poetry_activate() {
@@ -63,6 +69,21 @@ function flask_run() {
   python -m flask run
 }
 
+function python37 () {
+  pyenv global 3.7.13
+  pyenv versions
+}
+
+function python38 () {
+  pyenv global 3.8.13
+  pyenv versions
+}
+
+function python36 () {
+  pyenv global 3.6.15
+  pyenv versions
+}
+
 alias flask='flask_run'
 
 alias pyreqinit='python_init_requirements_base'
@@ -77,6 +98,8 @@ alias pypoinstall='python_poetry_install_and_activate'
 alias pypoactivate='python_poetry_activate'
 
 alias pyinstall="pip install -r $1"
+
+eval "$(register-python-argcomplete pipx)"
 
 # sets global config so that the virtualenvs are created without running
 # python -m venv .venv && source .venv/bin/activate

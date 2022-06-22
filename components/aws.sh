@@ -1,4 +1,4 @@
-export AWS_DEFAULT_PROFILE=tm-dev
+# export AWS_DEFAULT_PROFILE=tm-dev
 export AWS_PAGER=""
 # export AWS_PAGER="less"
 # export AWS_PAGER="cat"
