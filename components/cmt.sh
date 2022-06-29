@@ -6,3 +6,10 @@ export AWS_PROFILE=dev-user
 # cmtaws sso login
 # $(cmtaws codeartifact read)
 # echo $CODEARTIFACT_AUTH_TOKEN
+
+function cmtl () {
+  cmtaws sso login
+  $(cmtaws codeartifact read)
+}
+
+
