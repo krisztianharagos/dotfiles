@@ -36,6 +36,12 @@ function isodate () {
   date -u +"%Y-%m-%dT%H:%M:%SZ"
 }
 
+function sshs() {
+    ssh $@ "cat > /tmp/.bashrc_kharagos" < /Users/krisztian.haragos/cmt/personal_kharagos/home_resources/.bashrc_remote.sh
+    ssh $@ "cat > /tmp/kharagos_check.py" < /Users/krisztian.haragos/cmt/personal_kharagos/notebook/kharagos_check.py
+    ssh -t $@ "bash --rcfile /tmp/.bashrc_kharagos ; rm /tmp/.bashrc_kharagos ; cd /tmp"
+}
+
 alias localtunnerl='localtunnel'
 
 # https://stackoverflow.com/questions/24283097/reusing-output-from-last-command-in-bash
