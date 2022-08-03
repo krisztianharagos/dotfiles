@@ -160,18 +160,18 @@ alias kapi='kubectl api-versions'
 # Changing config to BeonStable_cluster-dn8-sp-kcapp001.config
 # KUBECONFIG set: /home/username/.kube/kubeconfigs/BeonStable_cluster-dn8-sp-kcapp001.config
 alias ks=ks; ks() {
-  grep_count=`ls $HOME/.kube/kubeconfigs | grep -i $1 | wc -l`
+  grep_count=`ls $ORIG_HOME/.kube/kubeconfigs | grep -i $1 | wc -l`
 
   if [[ $grep_count == 1 ]]; then
-    config_name=`ls $HOME/.kube/kubeconfigs | grep -i $1`
+    config_name=`ls $ORIG_HOME/.kube/kubeconfigs | grep -i $1`
     echo -e "${GREEN}Changing config to $config_name${NORMAL}"
-    export KUBECONFIG=$HOME/.kube/kubeconfigs/$config_name
+    export KUBECONFIG=$ORIG_HOME/.kube/kubeconfigs/$config_name
     echo "KUBECONFIG set: $KUBECONFIG"
   elif [[ $grep_count == 0 ]]; then
     echo -e "${RED}No matches found to: $1${NORMAL}"
   else
     echo -e "${RED}More then one matches found:${NORMAL}"
-    ls $HOME/.kube/kubeconfigs | grep -i $1
+    ls $ORIG_HOME/.kube/kubeconfigs | grep -i $1
   fi
 }
 alias kj=kj; kj() {
@@ -272,7 +272,7 @@ alias koam=koam; koam() {
 }
 # alias kex=kex; kex () {
 alias kex=kex; kex () {
-  kubectl exec -it $1 -- /bin/sh
+  kubectl exec -it $1 -- /bin/bash
 }
 ## kubectl exec alias with grep
 alias kexg=kexg; kexg () {

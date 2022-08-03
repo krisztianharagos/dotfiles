@@ -1,9 +1,9 @@
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # eval "$(pyenv init --path)"
 
-export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH"
+# export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH"
 
 export PIP_REQUIRE_VIRTUALENV=false
 export PIPENV_VENV_IN_PROJECT=1
@@ -99,7 +99,7 @@ alias pypoactivate='python_poetry_activate'
 
 alias pyinstall="pip install -r $1"
 
-eval "$(register-python-argcomplete pipx)"
+# eval "$(register-python-argcomplete pipx)"
 
 # sets global config so that the virtualenvs are created without running
 # python -m venv .venv && source .venv/bin/activate

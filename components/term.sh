@@ -155,17 +155,17 @@ function __k8s_details_ps1() {
 }
 
 # Get current git branch name like: (pa-scheduler)
-function git_details_ps1() {
-    # Get current git branch
-    if [[ -x $(command -v git) ]]; then
-      GIT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
-    else
-      echo "Please install git with sudo apt install -y git"
-    fi
-    if [[ -n "$GIT_BRANCH" ]]; then
-        echo "${GIT_BRANCH}"
-    fi
-}
+# function git_details_ps1() {
+#     # Get current git branch
+#     if [[ -x $(command -v git) ]]; then
+#       GIT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
+#     else
+#       echo "Please install git with sudo apt install -y git"
+#     fi
+#     if [[ -n "$GIT_BRANCH" ]]; then
+#         echo "${GIT_BRANCH}"
+#     fi
+# }
 # Get current git branch status like: (master)+
 function markup_git_branch() {
   if [[ -z $(git status --porcelain 2> /dev/null) ]]; then
@@ -208,16 +208,3 @@ function is_proxy_enabled() {
       echo " !"
     fi
 }
-
-
-# Set custom PS1
-# Current look:
-#    time  proxy   user    hostname    token current cluster  current namespace git branch  current folder
-# 15:35:22 ! user_name dn8-it-lchtst07 {jjt:cluster-dn8-sp-kcapp101:default} (git-branch) /tmp ▼
-if [[ -n "$BASH" ]] ;then
-  # export PS1="${NORMAL}\$(declare -F __get_time_ps1 >/dev/null && __get_time_ps1)${RED}\$(is_proxy_enabled) \u ${GREEN}\h${YELLOW} {\$(get_az_subscripion_id):\$(declare -F __k8s_details_ps1 >/dev/null && __k8s_details_ps1)}${BLUE} \$(declare -F git_details_ps1 >/dev/null && git_details_ps1)\$(markup_git_branch)${CYAN} \w${NORMAL} >\n\$ "
-  export PS1="${NORMAL}\$(declare -F __get_time_ps1 >/dev/null && __get_time_ps1)${RED}\$(is_proxy_enabled) \u ${GREEN}\h${BLUE} \$(declare -F git_details_ps1 >/dev/null && git_details_ps1)\$(markup_git_branch)${CYAN} \w${NORMAL} >\n\$ "
-  # export PS1="${NORMAL}\$(declare -F __get_time_ps1 >/dev/null && __get_time_ps1)${RED}\$(is_proxy_enabled) \u ${GREEN}\h${YELLOW} {\$(get_k8s_token):\$(declare -F __k8s_details_ps1 >/dev/null && __k8s_details_ps1)}${BLUE} \$(declare -F git_details_ps1 >/dev/null && git_details_ps1) ${CYAN} \w${NORMAL} >\n\$ "
-  # export PS1="${NORMAL}${RED} \u ${GREEN}\h${YELLOW} {:}${BLUE})${CYAN} \w${NORMAL} ▼\n\$ "
-
-fi
