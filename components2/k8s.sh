@@ -272,7 +272,9 @@ alias koam=koam; koam() {
 }
 # alias kex=kex; kex () {
 alias kex=kex; kex () {
-  kubectl exec -it $1 -- /bin/bash
+  # kubectl exec -it $1 -- /bin/bash
+  # git bash known issue
+  kubectl exec -i $1 -- /bin/bash
 }
 ## kubectl exec alias with grep
 alias kexg=kexg; kexg () {
@@ -282,6 +284,8 @@ alias kexg=kexg; kexg () {
     pod_name=`kubectl get pods --no-headers=true | grep -i $1 | cut -d' ' -f 1`
     echo -e "${GREEN}Entering shell for $pod_name${NORMAL}"
     kubectl exec -it $pod_name -- /bin/sh
+    # GIT BASH
+    # kubectl exec -i $pod_name -- /bin/sh
   elif [[ $grep_count == 0 ]]; then
     echo -e "${RED}No matches found to: $1${NORMAL}"
   else

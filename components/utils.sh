@@ -29,7 +29,10 @@ function localtunnel () {
 }
 
 function todate () {
-  date -r $1
+  # date -r $1
+  pushd $HOME/kharagos-notes/script
+    python to_date.py $1
+  popd
 }
 
 function isodate () {
