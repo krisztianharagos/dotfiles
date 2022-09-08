@@ -165,8 +165,9 @@ alias ks=ks; ks() {
   if [[ $grep_count == 1 ]]; then
     config_name=`ls $ORIG_HOME/.kube/kubeconfigs | grep -i $1`
     echo -e "${GREEN}Changing config to $config_name${NORMAL}"
-    export KUBECONFIG=$ORIG_HOME/.kube/kubeconfigs/$config_name
-    echo "KUBECONFIG set: $KUBECONFIG"
+    # export KUBECONFIG=$ORIG_HOME/.kube/kubeconfigs/$config_name
+    # echo "KUBECONFIG set: $KUBECONFIG"
+    cat $ORIG_HOME/.kube/kubeconfigs/$config_name > $ORIG_HOME/.kube/config
   elif [[ $grep_count == 0 ]]; then
     echo -e "${RED}No matches found to: $1${NORMAL}"
   else
@@ -272,9 +273,9 @@ alias koam=koam; koam() {
 }
 # alias kex=kex; kex () {
 alias kex=kex; kex () {
-  # kubectl exec -it $1 -- /bin/bash
+  kubectl exec -it $1 -- /bin/bash
   # git bash known issue
-  kubectl exec -i $1 -- /bin/bash
+  # kubectl exec -i $1 -- /bin/bash
 }
 ## kubectl exec alias with grep
 alias kexg=kexg; kexg () {
